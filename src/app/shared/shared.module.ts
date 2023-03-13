@@ -7,15 +7,22 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { RouterModule } from '@angular/router';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, NotfoundComponent, HttpClientModule],
+  imports: [
+    CommonModule,
+    SpinnerComponent,
+    RouterModule,
+    NotfoundComponent,
+    HttpClientModule,
+  ],
   declarations: [
     NavbarComponent,
     HeaderComponent,
     FooterComponent,
     LayoutComponent,
   ],
-  exports: [LayoutComponent, NotfoundComponent],
+  exports: [LayoutComponent, NotfoundComponent, SpinnerComponent],
 })
 export class SharedModule {}
