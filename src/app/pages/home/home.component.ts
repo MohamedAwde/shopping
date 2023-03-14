@@ -6,6 +6,8 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import { Subscription } from 'rxjs';
 import { IProduct } from 'src/app/shared/model/iproduct.model';
 import { NetworkErrorComponent } from 'src/app/shared/components/network-error/network-error.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -17,13 +19,18 @@ import { NetworkErrorComponent } from 'src/app/shared/components/network-error/n
     SpinnerComponent,
     CommonModule,
     NetworkErrorComponent,
+    NgSelectModule,
+    FormsModule,
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
   isError: boolean = false;
   isLoading: boolean = true;
   products!: IProduct[];
+  filterProducts!: IProduct[];
   subscription: Subscription[] = [];
+
+  selectedCategory = 'all';
 
   constructor(private productsService: ProductsService) {}
 
@@ -37,6 +44,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     const sub = this.productsService.getProducts().subscribe({
       next: (products) => {
         this.products = products;
+        this.filterProducts = products;
         this.isLoading = false;
         this.isError = false;
       },
@@ -46,6 +54,16 @@ export class HomeComponent implements OnInit, OnDestroy {
       },
     });
     this.subscription.push(sub);
+  }
+
+  handleCategoryChange() {
+    if (this.selectedCategory === 'all') {
+      this.filterProducts = this.products;
+    } else {
+      this.filterProducts = this.products.filter((product) => {
+        return product.type === this.selectedCategory;
+      });
+    }
   }
 
   ngOnDestroy(): void {

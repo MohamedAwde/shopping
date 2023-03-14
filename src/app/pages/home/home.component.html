@@ -1,8 +1,24 @@
 <!-- Products -->
 <section>
   <div class="container my-5">
-    <header class="mb-4">
-      <h3>New products</h3>
+    <header class="mb-4 row">
+      <div class="col">
+        <h3>New products</h3>
+      </div>
+      <div class="col-3">
+        <select
+          (change)="handleCategoryChange()"
+          [(ngModel)]="selectedCategory"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option selected value="all">All</option>
+          <option value="camera">Cameras</option>
+          <option value="phone">Phones</option>
+          <option value="watch">Watches</option>
+          <option value="headset">Headsets</option>
+        </select>
+      </div>
     </header>
 
     <app-network-error
@@ -12,11 +28,14 @@
     <app-spinner *ngIf="isLoading"></app-spinner>
 
     <div *ngIf="products" class="row">
-      <div class="col-lg-3 col-md-6 col-sm-12" *ngFor="let product of products">
+      <div
+        class="col-lg-3 col-md-6 col-sm-12"
+        *ngFor="let product of filterProducts"
+      >
         <app-product-card [product]="product"></app-product-card>
       </div>
     </div>
-    <div *ngIf="products?.length === 0">no products</div>
+    <div *ngIf="filterProducts?.length === 0">no products</div>
   </div>
 </section>
 <!-- Products -->
