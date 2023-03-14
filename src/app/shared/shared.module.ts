@@ -8,6 +8,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { RouterModule } from '@angular/router';
 import { SpinnerComponent } from './components/spinner/spinner.component';
+import { NetworkErrorComponent } from './components/network-error/network-error.component';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     RouterModule,
     NotfoundComponent,
     HttpClientModule,
+    NetworkErrorComponent,
   ],
   declarations: [
     NavbarComponent,
@@ -23,6 +25,11 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     FooterComponent,
     LayoutComponent,
   ],
-  exports: [LayoutComponent, NotfoundComponent, SpinnerComponent],
+  exports: [
+    LayoutComponent,
+    NotfoundComponent,
+    SpinnerComponent,
+    NetworkErrorComponent,
+  ],
 })
 export class SharedModule {}

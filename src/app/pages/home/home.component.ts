@@ -1,23 +1,54 @@
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from './components/product-card/product-card.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SpinnerComponent } from 'src/app/shared/components/spinner/spinner.component';
 import { ProductsService } from 'src/app/shared/services/products.service';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { IProduct } from 'src/app/shared/model/iproduct.model';
+import { NetworkErrorComponent } from 'src/app/shared/components/network-error/network-error.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [ProductCardComponent, SpinnerComponent, CommonModule],
+  imports: [
+    ProductCardComponent,
+    SpinnerComponent,
+    CommonModule,
+    NetworkErrorComponent,
+  ],
 })
-export class HomeComponent implements OnInit {
-  products$!: Observable<IProduct[]>;
+export class HomeComponent implements OnInit, OnDestroy {
+  isError: boolean = false;
+  isLoading: boolean = true;
+  products!: IProduct[];
+  subscription: Subscription[] = [];
+
   constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
-    this.products$ = this.productsService.getProducts();
+    this.fetchProducts();
+  }
+
+  fetchProducts() {
+    this.isLoading = true;
+    this.isError = false;
+    const sub = this.productsService.getProducts().subscribe({
+      next: (products) => {
+        this.products = products;
+        this.isLoading = false;
+        this.isError = false;
+      },
+      error: () => {
+        this.isError = true;
+        this.isLoading = false;
+      },
+    });
+    this.subscription.push(sub);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.forEach((sub) => sub.unsubscribe());
   }
 }
