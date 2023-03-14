@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LayoutComponent } from './components/layout/layout.component';
@@ -19,12 +18,7 @@ import { NetworkErrorComponent } from './components/network-error/network-error.
     HttpClientModule,
     NetworkErrorComponent,
   ],
-  declarations: [
-    NavbarComponent,
-    HeaderComponent,
-    FooterComponent,
-    LayoutComponent,
-  ],
+  declarations: [HeaderComponent, FooterComponent, LayoutComponent],
   exports: [
     LayoutComponent,
     NotfoundComponent,

@@ -18,6 +18,13 @@ const routes: Routes = [
     loadComponent: () =>
       import('./checkout/checkout.component').then((c) => c.CheckoutComponent),
   },
+  {
+    path: AppRoutes.orderPlaced,
+    loadComponent: () =>
+      import('./order-placed/order-placed.component').then(
+        (c) => c.OrderPlacedComponent
+      ),
+  },
 ];
 
 @NgModule({

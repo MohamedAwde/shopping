@@ -1,10 +1,21 @@
 <div class="card w-100 my-2 shadow-2-strong">
   <img [src]="product.img" class="card-img-top" style="aspect-ratio: 1 / 1" />
   <div class="card-body d-flex flex-column">
-    <h5 class="card-title">Canon camera 20x zoom, Black color EOS 2000</h5>
-    <p class="card-text">$320.00</p>
+    <h5 class="card-title">{{ product.name }}</h5>
+    <p class="card-text">{{ product.price | currency }}</p>
     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-      <a href="#!" class="btn btn-primary shadow-0 me-1">Add to cart</a>
+      <ng-container *ngIf="isAddedToCart">
+        <a routerLink="/cart" class="btn btn-secondary shadow-0 me-1">
+          Product added, Veiw cart
+        </a>
+      </ng-container>
+      <button
+        *ngIf="!isAddedToCart"
+        (click)="handleAddToCart()"
+        class="btn btn-primary shadow-0 me-1"
+      >
+        Add to cart
+      </button>
     </div>
   </div>
 </div>
