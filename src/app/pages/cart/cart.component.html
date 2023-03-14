@@ -62,8 +62,30 @@
                       </div>
                     </div>
                   </div>
+                  <div
+                    *ngIf="products?.length === 0"
+                    class="cart-body text-center p-3"
+                  >
+                    <p class="display-3">
+                      <i
+                        class="fa fa-cart-plus text-secondary"
+                        aria-hidden="true"
+                      ></i>
+                    </p>
+                    <h3><strong>Your Cart is Empty</strong></h3>
+                    <h4>Add something to make me happy :)</h4>
+                    <a
+                      routerLink="/"
+                      class="btn btn-primary cart-btn-transform m-3"
+                      data-abc="true"
+                      >continue shopping</a
+                    >
+                  </div>
                 </div>
-                <div class="d-flex justify-content-between">
+                <div
+                  *ngIf="products?.length !== 0"
+                  class="d-flex justify-content-between mt-4"
+                >
                   <button
                     routerLink="/checkout"
                     [ngClass]="{ disabled: !totalPrice }"
