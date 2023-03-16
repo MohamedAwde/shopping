@@ -5,8 +5,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Instaltion
 
 After cloning the project, run 
-`npm i` 
-or
-`yarn`
-if you're using yarn
-then run `yarn dev` or `npm run dev`, to run the JSON server open a new terminal, and then run `json-server db.json -w`
+1. `npm install --global yarn`
+then to install the project run
+2. `yarn`
+to run the dev server run
+3. `yarn dev`
+
