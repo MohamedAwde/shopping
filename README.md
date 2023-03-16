@@ -6,8 +6,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 After cloning the project, run 
 1. `npm install --global yarn`
-then to install the project run
-2. `yarn`
-to run the dev server run
-3. `yarn dev`
+2. `yarn` to install the project run
+3. `yarn dev` to run the dev server
 
