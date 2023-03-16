@@ -6,7 +6,6 @@ import { ProductsService } from 'src/app/shared/services/products.service';
 import { Subscription } from 'rxjs';
 import { IProduct } from 'src/app/shared/model/iproduct.model';
 import { NetworkErrorComponent } from 'src/app/shared/components/network-error/network-error.component';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -19,7 +18,6 @@ import { FormsModule } from '@angular/forms';
     SpinnerComponent,
     CommonModule,
     NetworkErrorComponent,
-    NgSelectModule,
     FormsModule,
   ],
 })
